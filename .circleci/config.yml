@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
     working_directory: ~/rails-docker-first/src
     steps:
       - checkout:
@@ -15,7 +15,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7.6
       - image: circleci/mysql:5.5
         environment:
           MYSQL_ROOT_PASSWORD: password
@@ -33,17 +33,14 @@ jobs:
       - ruby/install-deps
       - run:
           name: Database setup
-          command: |
-            bundle config set --local path 'vendor/cache'
-            bundle install
-            bundle exec rails db:migrate
+          command: bundle exec rails db:migrate
       - run:
           name: test
           command: bundle exec rake test
 
   # deploy:
   #   docker:
-  #     - image: circleci/ruby:2.7
+  #     - image: circleci/ruby:2.7.6
   #   steps:
   #     - checkout
   #     - setup_remote_docker:
