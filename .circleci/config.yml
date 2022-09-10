@@ -6,7 +6,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: cimg/ruby:2.7
+      - image: cimg/ruby:2.7 #CircleCI側で用意しているDockerのRUBYのイメージが、2021/12/31以降から新しいものに変更されたらしい
     working_directory: ~/rails-docker-first/src
     steps:
       - checkout:
